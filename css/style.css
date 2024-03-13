@@ -1,0 +1,13 @@
+.container-productos {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.producto {
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: rgb(243, 100, 100);
+}
