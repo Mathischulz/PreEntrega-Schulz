@@ -1,39 +1,73 @@
-// Precios de los productos
-let precio1 = 500;
-let precio2 = 1000;
-let precio3 = 800;
+//! Nombre usuario para que no pueda avanzar si escribe " " o un número // 
+let nombreUsuario = "";
 
-// Función para obtener el precio del producto según su número
-function obtenerPrecio(numeroProducto) {
+while(nombreUsuario.trim() === "" || !isNaN(nombreUsuario.trim())) {
+    nombreUsuario = prompt("Ingrese su nombre");
+    if (nombreUsuario.trim() === "" || !isNaN(nombreUsuario.trim())) {
+        alert("No ingresaste ningún nombre, intente de nuevo.")
+    } else {
+        alert ("Hola " + nombreUsuario + ", Bienvenido!")
+    }
+}
+console.log(nombreUsuario)
+
+
+//! Función para obtener el precio de un producto seleccionado //
+function obtenerPrecio(productoSeleccionado) {
     let precio;
-    switch (numeroProducto) {
-        case 1:
-            precio = precio1;
+    
+    //! Asigno los precios //
+    switch (productoSeleccionado) {
+        case '1':
+            precio = 1000;
             break;
-        case 2:
-            precio = precio2;
+        case '2':
+            precio = 900;
             break;
-        case 3:
-            precio = precio3;
+        case '3':
+            precio = 800;
+            break;
+        default:
+            precio = null; //! Si el producto no es valido, se asigna null al precio //
             break;
     }
+    
     return precio;
 }
 
-let productoSeleccionado = prompt("Ingrese el número del producto que quiere comprar (1, 2 o 3):");
+ //! Asigno variable para almacenar el precio total de la compra //
+let totalCompra = 0;
 
-// Convierto a número entero
-productoSeleccionado = parseInt(productoSeleccionado);
+//! Ciclo para que el usuario elija el producto o desee salir //
+while (true) {
+    let productoSeleccionado = prompt(
+        "Estos son nuestros productos:\n\n" +
+        "1- Iphone 15: $1000\n" +
+        "2- Iphone 14 Pro Max: $900\n" +
+        "3- Iphone 13: $800\n\n" +
+        "Ingrese el número del producto que desea comprar (1, 2 o 3), o 'x' para salir:");
 
-// Obtengo el precio del producto seleccionado utilizando la función
-let precioSeleccionado = obtenerPrecio(productoSeleccionado);
+    if (productoSeleccionado === 'x') {
+        break;  //! Si el usuario ingresa x, sale del ciclo //
+    }
 
-// Verifico si el precio obtenido es válido
-if (precioSeleccionado < 4) {
-    alert("Por favor, ingrese un número de producto (1, 2 o 3).");
-} else {
-    alert("El precio del Producto " + productoSeleccionado + " es: $" + precioSeleccionado);
-    console.log("El precio es de $" + precioSeleccionado)
+    let precioSeleccionado = obtenerPrecio(productoSeleccionado);
+
+    if (precioSeleccionado < 3 ) {
+        alert("Por favor, ingrese un número de producto válido (1, 2 o 3).");
+    } else {
+        totalCompra += precioSeleccionado; //! Se suma el precio del producto al total de la compra //
+        alert("El precio del producto es: $" + precioSeleccionado + " y fue agregado al carrito de compra.");
+        console.log("El precio del producto es: $" + precioSeleccionado);
+    }
 }
 
+//! Si se realiza una compra muestro un alert del precio total //
+if (totalCompra > 0) {
+    alert("El precio total de su compra es: $" + totalCompra + ". ¡Gracias por su compra!");
+    console.log("El precio total de su compra es: $" + totalCompra + ". ¡Gracias por su compra!");
+} else { //! Si no realiza ninguna compra muestro alert de hasta luego //
+    alert("No ha realizado ninguna compra. ¡Hasta luego!");
+    console.log("No ha realizado ninguna compra. ¡Hasta luego!");
+}
 

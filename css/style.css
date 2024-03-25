@@ -1,7 +1,7 @@
 .container-productos {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 .producto {
@@ -10,4 +10,13 @@
     border-radius: 1rem;
     text-align: center;
     background-color: rgb(243, 100, 100);
+}
+
+.producto p {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.producto img {
+    width: 200px;
 }
