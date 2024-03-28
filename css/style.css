@@ -12,9 +12,14 @@
     background-color: rgb(243, 100, 100);
 }
 
+.producto h1 {
+    margin: .5rem;
+    font-size: 1.5rem;
+}
+
 .producto p {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .producto img {

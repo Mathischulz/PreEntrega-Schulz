@@ -27,6 +27,9 @@ function obtenerPrecio(productoSeleccionado) {
         case '3':
             precio = 800;
             break;
+        case '4':
+            precio = 700;
+            break;
         default:
             precio = null; //! Si el producto no es valido, se asigna null al precio //
             break;
@@ -44,8 +47,9 @@ while (true) {
         "Estos son nuestros productos:\n\n" +
         "1- Iphone 15: $1000\n" +
         "2- Iphone 14 Pro Max: $900\n" +
-        "3- Iphone 13: $800\n\n" +
-        "Ingrese el número del producto que desea comprar (1, 2 o 3), o 'x' para salir:");
+        "3- Iphone 13: $800\n" +
+        "4- Iphone 12: $700\n\n" +
+        "Ingrese el número del producto que desea comprar (1, 2, 3 o 4), o escriba 'x' para salir:");
 
     if (productoSeleccionado === 'x') {
         break;  //! Si el usuario ingresa x, sale del ciclo //
@@ -53,8 +57,8 @@ while (true) {
 
     let precioSeleccionado = obtenerPrecio(productoSeleccionado);
 
-    if (precioSeleccionado < 3 ) {
-        alert("Por favor, ingrese un número de producto válido (1, 2 o 3).");
+    if (precioSeleccionado < 4 ) {
+        alert("Por favor, ingrese un número de producto válido (1, 2, 3 o 4).");
     } else {
         totalCompra += precioSeleccionado; //! Se suma el precio del producto al total de la compra //
         alert("El precio del producto es: $" + precioSeleccionado + " y fue agregado al carrito de compra.");
@@ -71,3 +75,28 @@ if (totalCompra > 0) {
     console.log("No ha realizado ninguna compra. ¡Hasta luego!");
 }
 
+
+//! ARRAY de los productos //
+const productos = [
+    {
+        titulo: "Iphone 15",
+        precio: 1000
+    },
+    {
+        titulo: "Iphone 14",
+        precio: 900
+    },
+    {
+        titulo: "Iphone 13",
+        precio: 800
+    },
+    {
+        titulo: "Iphone 12",
+        precio: 700
+    }
+]
+console.log(productos)
+
+productos.forEach(producto => {
+    console.log("Producto: " + producto.titulo + ", Precio: " + producto.precio);
+});
