@@ -1,48 +1,64 @@
-//! Nombre usuario para que no pueda avanzar si escribe " " o un número // 
-let nombreUsuario = "";
+//! Saludo al usuario y obtengo su nombre //
+let nombreUsuario = obtenerNombreUsuario();
 
-while(nombreUsuario.trim() === "" || !isNaN(nombreUsuario.trim())) {
-    nombreUsuario = prompt("Ingrese su nombre");
-    if (nombreUsuario.trim() === "" || !isNaN(nombreUsuario.trim())) {
-        alert("No ingresaste ningún nombre, intente de nuevo.")
-    } else {
-        alert ("Hola " + nombreUsuario + ", Bienvenido!")
-    }
+
+//! Función para obtener el nombre de usuario válido //
+function obtenerNombreUsuario() {
+    let nombreUsuario;
+    do {
+        nombreUsuario = prompt("Ingrese su nombre").trim();
+        if (nombreUsuario === "") {
+            alert("No ingresaste ningún nombre, intente de nuevo.");
+        } else {
+            alert("Hola " + nombreUsuario + ", Bienvenido!");
+        }
+    } while (nombreUsuario === "");
+    console.log(nombreUsuario);
+    return nombreUsuario;
 }
-console.log(nombreUsuario)
+
 
 
 //! Función para obtener el precio de un producto seleccionado //
-function obtenerPrecio(productoSeleccionado) {
-    let precio;
-    
-    //! Asigno los precios //
-    switch (productoSeleccionado) {
-        case '1':
-            precio = 1000;
-            break;
-        case '2':
-            precio = 900;
-            break;
-        case '3':
-            precio = 800;
-            break;
-        case '4':
-            precio = 700;
-            break;
-        default:
-            precio = null; //! Si el producto no es valido, se asigna null al precio //
-            break;
-    }
-    
-    return precio;
+function obtenerPrecio(productoSeleccionado, productos) {
+    let producto = productos.find(item => item.numero === productoSeleccionado);
+    return producto ? producto.precio : null;
 }
 
- //! Asigno variable para almacenar el precio total de la compra //
+//! ARRAY de los productos //
+const productos = [
+    {
+        numero: '1',
+        titulo: "Iphone 15",
+        precio: 1000
+    },
+    {
+        numero: '2',
+        titulo: "Iphone 14 promax",
+        precio: 900
+    },
+    {
+        numero: '3',
+        titulo: "Iphone 13",
+        precio: 800
+    },
+    {
+        numero: '4',
+        titulo: "Iphone 12",
+        precio: 700
+    }
+];
+console.log(productos);
+
+
+//! Asigno variable para almacenar el precio total de la compra //
 let totalCompra = 0;
 
 //! Ciclo para que el usuario elija el producto o desee salir //
-while (true) {
+let precioSeleccionado;
+let seguirComprando;
+
+do {
     let productoSeleccionado = prompt(
         "Estos son nuestros productos:\n\n" +
         "1- Iphone 15: $1000\n" +
@@ -52,51 +68,37 @@ while (true) {
         "Ingrese el número del producto que desea comprar (1, 2, 3 o 4), o escriba 'x' para salir:");
 
     if (productoSeleccionado === 'x') {
-        break;  //! Si el usuario ingresa x, sale del ciclo //
-    }
-
-    let precioSeleccionado = obtenerPrecio(productoSeleccionado);
-
-    if (precioSeleccionado < 4 ) {
-        alert("Por favor, ingrese un número de producto válido (1, 2, 3 o 4).");
+        seguirComprando = false;  
     } else {
-        totalCompra += precioSeleccionado; //! Se suma el precio del producto al total de la compra //
-        alert("El precio del producto es: $" + precioSeleccionado + " y fue agregado al carrito de compra.");
-        console.log("El precio del producto es: $" + precioSeleccionado);
+        seguirComprando = true; 
+
+        precioSeleccionado = obtenerPrecio(productoSeleccionado, productos); 
+
+        if (!precioSeleccionado) {
+            alert("Por favor, ingrese un número de producto válido (1, 2, 3 o 4).");
+        } else {
+            totalCompra += precioSeleccionado; 
+            alert("El precio del producto es: $" + precioSeleccionado + " y fue agregado al carrito de compra.");
+            console.log("El precio del producto agregado al carrito es: $" + precioSeleccionado);
+        }
+    }
+} while (seguirComprando);
+
+
+
+//! Calcular el total de la compra usando un ciclo for
+if (precioSeleccionado && precioSeleccionado.length > 0) {
+    for (let i = 0; i < precioSeleccionado.length; i++) {
+        totalCompra += precioSeleccionado[i];
     }
 }
 
-//! Si se realiza una compra muestro un alert del precio total //
+//! Mostrar el mensaje apropiado dependiendo de si se realizó alguna compra
 if (totalCompra > 0) {
-    alert("El precio total de su compra es: $" + totalCompra + ". ¡Gracias por su compra!");
-    console.log("El precio total de su compra es: $" + totalCompra + ". ¡Gracias por su compra!");
-} else { //! Si no realiza ninguna compra muestro alert de hasta luego //
-    alert("No ha realizado ninguna compra. ¡Hasta luego!");
-    console.log("No ha realizado ninguna compra. ¡Hasta luego!");
+    alert(nombreUsuario + ", el precio total de su compra es: $" + totalCompra + ". ¡Gracias por su compra!");
+    console.log("El precio total de la compra de " + nombreUsuario + " es: $" + totalCompra);
+} else {
+    alert("No ha realizado ninguna compra. ¡Hasta luego, " + nombreUsuario + "!");
+    console.log("No ha realizado ninguna compra. ¡Hasta luego, " + nombreUsuario + "!");
 }
 
-
-//! ARRAY de los productos //
-const productos = [
-    {
-        titulo: "Iphone 15",
-        precio: 1000
-    },
-    {
-        titulo: "Iphone 14",
-        precio: 900
-    },
-    {
-        titulo: "Iphone 13",
-        precio: 800
-    },
-    {
-        titulo: "Iphone 12",
-        precio: 700
-    }
-]
-console.log(productos)
-
-productos.forEach(producto => {
-    console.log("Producto: " + producto.titulo + ", Precio: " + producto.precio);
-});
