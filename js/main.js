@@ -1,7 +1,6 @@
 //! Saludo al usuario y obtengo su nombre //
 let nombreUsuario = obtenerNombreUsuario();
 
-
 //! Función para obtener el nombre de usuario válido //
 function obtenerNombreUsuario() {
     let nombreUsuario;
@@ -16,8 +15,6 @@ function obtenerNombreUsuario() {
     console.log(nombreUsuario);
     return nombreUsuario;
 }
-
-
 
 //! Función para obtener el precio de un producto seleccionado //
 function obtenerPrecio(productoSeleccionado, productos) {
@@ -34,7 +31,7 @@ const productos = [
     },
     {
         numero: '2',
-        titulo: "Iphone 14 promax",
+        titulo: "Iphone 14 Pro Max",
         precio: 900
     },
     {
@@ -48,31 +45,31 @@ const productos = [
         precio: 700
     }
 ];
-console.log(productos);
+console.log(productos)
+
+//! Mostrar los productos al usuario utilizando forEach
+let listaProductos = "Estos son nuestros productos:\n\n";
+productos.forEach(producto => {
+    listaProductos += producto.numero + "- " + producto.titulo + ": $" + producto.precio + "\n";
+});
+listaProductos += "\nIngrese el número del producto que desea comprar (1, 2, 3 o 4), o escriba 'x' para salir:";
+let seguirComprando;
 
 
 //! Asigno variable para almacenar el precio total de la compra //
 let totalCompra = 0;
 
-//! Ciclo para que el usuario elija el producto o desee salir //
-let precioSeleccionado;
-let seguirComprando;
 
+//! Ciclo para que el usuario elija el producto o desee salir //
 do {
-    let productoSeleccionado = prompt(
-        "Estos son nuestros productos:\n\n" +
-        "1- Iphone 15: $1000\n" +
-        "2- Iphone 14 Pro Max: $900\n" +
-        "3- Iphone 13: $800\n" +
-        "4- Iphone 12: $700\n\n" +
-        "Ingrese el número del producto que desea comprar (1, 2, 3 o 4), o escriba 'x' para salir:");
+    let productoSeleccionado = prompt(listaProductos);
 
     if (productoSeleccionado === 'x') {
         seguirComprando = false;  
     } else {
         seguirComprando = true; 
 
-        precioSeleccionado = obtenerPrecio(productoSeleccionado, productos); 
+        let precioSeleccionado = obtenerPrecio(productoSeleccionado, productos); 
 
         if (!precioSeleccionado) {
             alert("Por favor, ingrese un número de producto válido (1, 2, 3 o 4).");
@@ -83,15 +80,6 @@ do {
         }
     }
 } while (seguirComprando);
-
-
-
-//! Calcular el total de la compra usando un ciclo for
-if (precioSeleccionado && precioSeleccionado.length > 0) {
-    for (let i = 0; i < precioSeleccionado.length; i++) {
-        totalCompra += precioSeleccionado[i];
-    }
-}
 
 //! Mostrar el mensaje apropiado dependiendo de si se realizó alguna compra
 if (totalCompra > 0) {
