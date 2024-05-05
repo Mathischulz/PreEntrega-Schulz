@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     
     <header>
         <div class="container">
-            <h1>PreEntrega3 Schulz</h1>
+            <h1>Proyecto final Schulz</h1>
         </div>
     </header>
-
+    
     <main class="main">
         <section class="container">
-            <h2>Productos Iphone</h2>
+            <div class="titulo-btn">
+                <h2>Productos Iphone</h2>
+                <button class="btn-color" id="modo-color">Cambiar modo color</button>
+            </div>
             <div class="productos" id="productos">
                 <!-- JS -->
             </div>
@@ -34,16 +38,19 @@
                 </div>
                 <div class="carrito-total">
                     <h2>Total: <span id="carrito-total">$0</span></h2>
+                    <button id="finalizar-compra">Finalizar compra</button>
                 </div>
             </div>    
         </section>
-    </main>
+    </main> 
     <footer class="footer">
         <div class="container">
             <h2>MathiApple</h2>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

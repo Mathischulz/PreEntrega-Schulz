@@ -1,0 +1,26 @@
+[
+    { 
+        "id": 1, 
+        "nombre": "Iphone 15", 
+        "precio": 1000, 
+        "imagen": "./img/iphone15.png" 
+    },
+    { 
+        "id": 2, 
+        "nombre": "Iphone 14", 
+        "precio": 900, 
+        "imagen": "./img/14promax.png" 
+    },
+    { 
+        "id": 3, 
+        "nombre": "Iphone 13", 
+        "precio": 800, 
+        "imagen": "./img/iphone13.png" 
+    },
+    { 
+        "id": 4, 
+        "nombre": "Iphone 12", 
+        "precio": 700, 
+        "imagen": "./img/iphone12.png" 
+    }
+]
